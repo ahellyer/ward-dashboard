@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 //components
 import WardGrid from './components/WardGrid';
-import WardSummary from './components/WardSummary';
+
+import Ward from './components/Ward';
 
 class App extends Component {
   constructor() {
@@ -23,21 +25,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>
-            Dashb<span className="ward">ward</span>
-          </h1>
-        </header>
-
-        <WardGrid>
-          {/* map through wards and pass data to wardSummary card */}
-          {this.state.wards &&
-            this.state.wards.map(ward => (
-              <WardSummary key={ward.name} wardData={ward} />
-            ))}
-        </WardGrid>
-      </div>
+      <Router>
+        <div className="App">
+          <Link to="/Ward">Ind ward page</Link>
+          <header className="App-header">
+            <h1>
+              Dashb<span className="ward">ward</span>
+            </h1>
+          </header>
+          <Route
+            exact
+            path="/"
+            render={props => <WardGrid wards={this.state.wards} />}
+          />
+          <Route exact path="/Ward" component={Ward} />
+        </div>
+      </Router>
     );
   }
 }

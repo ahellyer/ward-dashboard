@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import WardSummary from './WardSummary';
+
 const MainGrid = styled.main`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -11,10 +13,18 @@ const MainGrid = styled.main`
 `;
 
 const WardGrid = props => {
+  //   console.log(props.wards);
   return (
     <MainGrid>
-      {/* <h2> ward grid</h2> */}
-      {props.children}
+      {props.wards !== undefined ? (
+        props.wards.map((ward, i) => (
+          <WardSummary key={i} wardID={i + 1} wardData={ward} />
+        ))
+      ) : (
+        <>
+          <h2>loading.....</h2>
+        </>
+      )}
     </MainGrid>
   );
 };
