@@ -2,22 +2,19 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
   background-color: aliceblue;
+  /* background-color: #2ec4b6; */
+
   /* background: url('skyline.jpg'); */
-  min-height: 30vh;
+  min-height: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-bottom: 2em;
 }
 h1 {
   background: url('skyline.jpg') no-repeat;
@@ -29,6 +26,26 @@ h1 {
   font-size: 5.5em;
   text-shadow: 5px 6px rgba(0, 0, 0, 0.1);
   background-position-y: -337px;
+  margin-bottom: 0;
+}
+h2 {
+  font-size: 1em;
+  /* min-height: 50px; */
+}
+h3 {
+  font-size: 0.8em;
+}
+p {
+  color: black;
+  width: 80%;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+body {
+  background: #35a7ff;
 }
 .ward {
   color: limegreen;
@@ -38,11 +55,58 @@ h1 {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
+.center {
+  margin: 2em auto;
+  width: 50%;
+  max-width: 400px;
+  min-width: 150px;
+  text-align: center;
+  grid-row: 2 / 1;
+  font-size: 20px;
+}
+div.loader {
+  font-size: 100px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 1px #333333 solid;
+  border-radius: 50%;
+  -webkit-animation: rotation 1s ease-in-out infinite;
+  -moz-animation: rotation 1s ease-in-out infinite;
+  animation: rotation 1s ease-in-out infinite;
+  margin: 30px auto;
+}
+.spinner:after {
+  width: 10px;
+  height: 10px;
+  background-color: #666666;
+  border-radius: 100%;
+  position: absolute;
+  content: '';
+}
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes rotation {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes rotation {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }

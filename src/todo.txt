@@ -1,0 +1,3 @@
+add email and phone number to councillor component (extended vs not extended prop?)
+//figure out how to trigger re-render of twitter widget**
+//look into componentDidUpdate
