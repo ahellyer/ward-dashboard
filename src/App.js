@@ -11,6 +11,7 @@ import {
 
 //components
 import WardGrid from './components/WardGrid';
+import Map from './components/Map';
 
 import Ward from './components/Ward';
 import { fetchWardsAction } from './redux/action-creators.js';
@@ -48,6 +49,7 @@ class App extends Component {
               debated at council meetings.
             </p>
           </header>
+          <Map />
 
           {/* <Link to="/#/Ward">Ind ward page</Link> */}
           <Route

@@ -7,11 +7,17 @@ import Councillor from './Councillor';
 
 const Card = styled.div`
   border: 4px solid rgba(72, 77, 109, 0.4);
-  border: 2px solid #6bf178;
+  border: 2px solid white;
 
   border-radius: 20px;
   /* background: #f1e8b8; */
   background: white;
+  background: #c5d5ea;
+  background: #4f6d7a;
+  color: white;
+  h2 {
+    color: white;
+  }
   /* min-height: 200px; */
   padding: 1em;
   /* background: linear-gradient(0deg, #ffffff 60%, #efe9f4 40%); */

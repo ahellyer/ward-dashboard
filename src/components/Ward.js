@@ -23,11 +23,12 @@ const TwoColumn = styled.div`
   .councillorContainer {
     width: 25%;
     background: aliceblue;
-    background: #ffe74c;
+    /* background: #ffe74c; */
   }
   .vitalsLayout {
     background: #efe9f4;
     background: #35a7ff;
+    background: #4f6d7a;
     width: 75%;
     position: relative;
     .vitalsContainer {

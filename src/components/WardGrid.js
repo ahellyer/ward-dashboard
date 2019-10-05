@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import WardSummary from './WardSummary';
 import { Loader } from './Loader';
+import Map from './Map';
 
 const MainGrid = styled.main`
   display: grid;
@@ -19,16 +20,19 @@ const WardGrid = props => {
   return props.isLoading ? (
     <Loader />
   ) : (
-    <MainGrid>
-      {props.wards.map((ward, i) => (
-        <WardSummary
-          key={i}
-          wardID={i + 1}
-          wardData={ward}
-          allWards={props.wards}
-        />
-      ))}
-    </MainGrid>
+    <div>
+      {/* <Map /> */}
+      <MainGrid>
+        {props.wards.map((ward, i) => (
+          <WardSummary
+            key={i}
+            wardID={i + 1}
+            wardData={ward}
+            allWards={props.wards}
+          />
+        ))}
+      </MainGrid>
+    </div>
   );
 };
 

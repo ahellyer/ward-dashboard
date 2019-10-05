@@ -45,14 +45,22 @@ a {
   color: black;
 }
 body {
-  background: #35a7ff;
+  background: #1e1126;
 }
 .ward {
   color: limegreen;
 }
 
+.leaflet-container {
+  height: 400px;
+  width: 600px;
+  margin: 2em auto;
+  border-radius: 8px;
+  border: 2px solid grey;
+}
+
 .App-link {
-  color: #61dafb;
+  color: #1e1126;
 }
 
 .center {
