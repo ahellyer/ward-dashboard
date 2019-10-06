@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import WardSummary from './WardSummary';
 import { Loader } from './Loader';
-import Map from './Map';
 
 const MainGrid = styled.main`
   display: grid;
@@ -21,7 +20,6 @@ const WardGrid = props => {
     <Loader />
   ) : (
     <div>
-      {/* <Map /> */}
       <MainGrid>
         {props.wards.map((ward, i) => (
           <WardSummary

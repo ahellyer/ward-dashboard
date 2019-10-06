@@ -52,6 +52,7 @@ class Map extends React.Component {
           //   let newCoords = formatCoordinates(testCoords);
           return (
             <Polygon
+              key={ward.properties.AREA_NAME}
               color="#BBCDE5"
               positions={newCoords}
               weight="1.5"

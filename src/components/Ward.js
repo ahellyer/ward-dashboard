@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  Redirect,
-  withRouter
-} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 import Councillor from './Councillor';
-import IncomeStats from './IncomeStats';
-import HousingStats from './HousingStats';
-import PopulationStats from './PopulationStats';
+import SingleVitalsSet from './SingleVitalsSet';
+import TwitterFeed from './TwitterFeed';
 
 const TwoColumn = styled.div`
   /* background: red; */
   border-top: 2px solid darkgrey;
   display: flex;
   min-height: 500px;
+  h2 {
+    font-size: 2em;
+  }
 
   /* height: 50vh; */
   .councillorContainer {
@@ -29,6 +25,7 @@ const TwoColumn = styled.div`
     background: #efe9f4;
     background: #35a7ff;
     background: #4f6d7a;
+    background: #bbcde5;
     width: 75%;
     position: relative;
     .vitalsContainer {
@@ -49,6 +46,7 @@ const Pagination = styled.div`
     padding: 10px;
     text-align: left;
     font-size: 1.4em;
+    color: #222222;
     span {
       display: block;
       font-size: 1.5em;
@@ -81,24 +79,65 @@ class Ward extends Component {
     const vitals = this.props.wards[Number(this.props.match.params.id) - 1]
       .overview;
 
+    const incomeVitals = [
+      {
+        label: 'Average Household Income',
+        value: vitals.averageHouseholdIncome,
+        isCurrency: true
+      },
+      {
+        label: 'Median Household Income',
+        value: vitals.medianHouseholdIncome,
+        isCurrency: true
+      }
+    ];
+
+    const populationVitals = [
+      {
+        label: 'Population',
+        value: vitals.population,
+        isCurrency: false
+      },
+      {
+        label: 'People / Household',
+        value: vitals.peoplePerHousehold,
+        isCurrency: false
+      }
+    ];
+
+    const housingVitals = [
+      {
+        label: 'Renters',
+        value: vitals.percentRenters,
+        isCurrency: false,
+        isPercentage: true
+      },
+      {
+        label: 'Owners',
+        value: vitals.percentOwners,
+        isCurrency: false,
+        isPercentage: true
+      }
+    ];
+
+    const twitterName = /[^/]*$/.exec(councillor.twitter)[0];
+
     return (
       <div>
         <TwoColumn>
           <div className="councillorContainer">
             <Councillor councillor={councillor} extended={true} />
-            {/* <div>
-              
-            </div> */}
+            <TwitterFeed name={twitterName} />
           </div>
           <div className="vitalsLayout">
             <h2>
               Ward {this.props.match.params.id}:
               {this.props.wards[Number(this.props.match.params.id) - 1].name}
             </h2>
-            <div class="vitalsContainer">
-              <IncomeStats vitals={vitals} />
-              <PopulationStats vitals={vitals} />
-              <HousingStats vitals={vitals} />
+            <div className="vitalsContainer">
+              <SingleVitalsSet symbol="💰" vitals={incomeVitals} />
+              <SingleVitalsSet symbol="👨‍👨‍👧‍👦" vitals={populationVitals} />
+              <SingleVitalsSet symbol="🏠" vitals={housingVitals} />
             </div>
             <Pagination>
               {Number(this.props.match.params.id) - 1 !== 0 && (
@@ -107,7 +146,7 @@ class Ward extends Component {
                   to={`/Wards/${Number(this.props.match.params.id) - 1}`}
                 >
                   <span>
-                    <i class="fas fa-long-arrow-alt-left"></i>
+                    <i className="fas fa-long-arrow-alt-left"></i>
                   </span>
                   <strong>Previous Ward</strong>
                 </Link>
@@ -119,7 +158,7 @@ class Ward extends Component {
                   to={`/Wards/${Number(this.props.match.params.id) + 1}`}
                 >
                   <span>
-                    <i class="fas fa-long-arrow-alt-right"></i>
+                    <i className="fas fa-long-arrow-alt-right"></i>
                   </span>
                   <strong>Next Ward</strong>
                 </Link>
@@ -128,8 +167,6 @@ class Ward extends Component {
             </Pagination>
           </div>
         </TwoColumn>
-
-        {/* disable previous link if its the first ward */}
       </div>
     );
   }
