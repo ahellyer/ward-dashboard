@@ -4,6 +4,7 @@ import { formatNumber } from '../utils';
 
 const Vital = styled.div`
   background: white;
+  background: aliceblue;
   width: 30%;
   margin: 1em;
   padding: 1em;

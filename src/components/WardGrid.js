@@ -19,16 +19,18 @@ const WardGrid = props => {
   return props.isLoading ? (
     <Loader />
   ) : (
-    <MainGrid>
-      {props.wards.map((ward, i) => (
-        <WardSummary
-          key={i}
-          wardID={i + 1}
-          wardData={ward}
-          allWards={props.wards}
-        />
-      ))}
-    </MainGrid>
+    <div>
+      <MainGrid>
+        {props.wards.map((ward, i) => (
+          <WardSummary
+            key={i}
+            wardID={i + 1}
+            wardData={ward}
+            allWards={props.wards}
+          />
+        ))}
+      </MainGrid>
+    </div>
   );
 };
 

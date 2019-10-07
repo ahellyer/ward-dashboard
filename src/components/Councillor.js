@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const PhotoContainer = styled.div`
   width: 100px;
@@ -8,7 +7,7 @@ const PhotoContainer = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  margin: 0 auto;
+  margin: 1em auto;
   /* box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.3); */
 `;
 
@@ -17,6 +16,14 @@ const Photo = styled.img`
   margin: 0 auto;
   height: 130%;
   width: auto;
+`;
+
+const SocialContainer = styled.div`
+  margin: 1em auto;
+  i {
+    font-size: 1.4em;
+    padding: 0.5em;
+  }
 `;
 
 const Councillor = ({ extended, name, ...props }) => {
@@ -32,32 +39,15 @@ const Councillor = ({ extended, name, ...props }) => {
       </div>
       {extended ? (
         <>
-          <div>
-            <a>
-              <i class="fab fa-twitter"></i>
+          <SocialContainer>
+            <a href={`https://www.twitter.com/${twitterName}`}>
+              <i className="fab fa-twitter"></i>
             </a>
 
             <a href={`mailto:${props.councillor.email}`}>
-              <i class="far fa-envelope"></i>
+              <i className="far fa-envelope"></i>
             </a>
-          </div>
-          {/* <TwitterTimelineEmbed
-            className="twitterEmbed"
-            sourceType="profile"
-            screenName={twitterName}
-            options={{ height: 400 }}
-          /> */}
-          {/* <a
-            id="twitter-wjs"
-            class="twitter-timeline"
-            href={props.councillor.twitter}
-            data-height="400"
-            data-chrome="nofooter"
-            data-link-color="#820bbb"
-            data-border-color="#a80000"
-          > 
-            Tweets by @TwitterDev
-          </a> */}
+          </SocialContainer>
         </>
       ) : null}
     </div>

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  HashRouter
-} from 'react-router-dom';
+import { Route, HashRouter } from 'react-router-dom';
 
 //components
 import WardGrid from './components/WardGrid';
+import Map from './components/Map';
 
 import Ward from './components/Ward';
 import { fetchWardsAction } from './redux/action-creators.js';
@@ -29,13 +24,15 @@ class App extends Component {
     //   .then(res => this.setState({ wards: res[0].data }));
     //make API call using redux action instead of directly fetching in componentDidMount.
     this.props.fetchWards();
+    //get map position:
+    navigator.geolocation.getCurrentPosition(pos => console.log(pos));
   }
 
   render() {
     return (
       <HashRouter>
         <div className="App">
-          <header className="App-header">
+          {/* <header className="App-header">
             <h1>
               Dashb<span className="ward">ward</span>
             </h1>
@@ -47,7 +44,8 @@ class App extends Component {
               review and debate policies and recommendations before they are
               debated at council meetings.
             </p>
-          </header>
+          </header> */}
+          <Map />
 
           {/* <Link to="/#/Ward">Ind ward page</Link> */}
           <Route

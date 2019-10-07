@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Ward from './Ward';
+import { Link } from 'react-router-dom';
 import Councillor from './Councillor';
 
 const Card = styled.div`
   border: 4px solid rgba(72, 77, 109, 0.4);
-  border: 2px solid #6bf178;
+  border: 2px solid #222222;
 
   border-radius: 20px;
   /* background: #f1e8b8; */
   background: white;
-  /* min-height: 200px; */
+  background: #c5d5ea;
+  background: #4f6d7a;
+  background: aliceblue;
+  color: #222222;
+  h2 {
+    color: #222222;
+  }
   padding: 1em;
-  /* background: linear-gradient(0deg, #ffffff 60%, #efe9f4 40%); */
   transition: all linear 0.1s;
   &:hover {
     border: 4px solid rgba(72, 77, 109, 1);
