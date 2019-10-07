@@ -22,10 +22,8 @@ class Map extends React.Component {
     const accessToken =
       'pk.eyJ1IjoiYWhlbGx5ZXIiLCJhIjoiY2sxY2hxdnhyMGVmajNtcXRtdTBwZzl4ciJ9.WhS2xRhiU841htW8Jmkiaw';
     const id = 'dark-v10';
-    const minimalistMap = `https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png`;
     const darkMap = `https://api.mapbox.com/styles/v1/mapbox/${id}/tiles/{z}/{x}/{y}?access_token=${accessToken}`;
-    const waterColour = `https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png`;
-    const basicGrey = `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`;
+
     return (
       <LeafletMap
         center={[43.7, -79.4]}
@@ -48,8 +46,11 @@ class Map extends React.Component {
           let coords = ward.geometry.coordinates[0];
           //   let newCoords = formatCoordinates(ward.geometry.coordinates[0]);
           const newCoords = formatCoordinates(coords);
-          //   const testCoords = [[1, 2], [1, 2]];
-          //   let newCoords = formatCoordinates(testCoords);
+          let color = '#BBCDE5';
+          //if ward.properties.AREA_NAME is equal to hovered ward card, render that polygon in a different color
+          if (ward.properties.AREA_NAME === 'Humber River-Black Creek') {
+            color = 'red';
+          }
           return (
             <Polygon
               key={ward.properties.AREA_NAME}

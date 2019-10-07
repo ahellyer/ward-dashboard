@@ -13,13 +13,15 @@ export const toggleLoading = bool => ({
 
 export const fetchWardsAction = () => {
   const url = 'https://city-councillors-api.herokuapp.com/';
+  // const url = 'http://localhost:8080';
   return async function(dispatch) {
     //toggle loading to true
     dispatch(toggleLoading(true));
     const response = await fetch(url)
       .then(res => res.json())
-      .then(res => res[0].data);
-    dispatch(addWardsAction(response), err => dispatch(fetchErrorAction(err)));
+      .then(res => res[0].data)
+      .catch(err => dispatch(fetchErrorAction(err)));
+    dispatch(addWardsAction(response));
     //toggle loading to false
     dispatch(toggleLoading(false));
   };

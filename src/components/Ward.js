@@ -15,7 +15,6 @@ const TwoColumn = styled.div`
     font-size: 2em;
   }
 
-  /* height: 50vh; */
   .councillorContainer {
     width: 25%;
     background: aliceblue;
@@ -73,6 +72,7 @@ class Ward extends Component {
   };
 
   render() {
+    console.log(this.props.wards);
     const councillor = this.props.wards[Number(this.props.match.params.id) - 1]
       .counsillor;
 
@@ -172,4 +172,5 @@ class Ward extends Component {
   }
 }
 
-export default withRouter(Ward);
+// export default withRouter(Ward);
+export default Ward;

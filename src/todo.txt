@@ -1,3 +1,18 @@
-add email and phone number to councillor component (extended vs not extended prop?)
 //figure out how to trigger re-render of twitter widget**
-//look into componentDidUpdate
+
+
+1. On hover render that ward's polygon a different color on the map
+	//attach hover event ("onMouseEnter") to each card component 
+	//dispatch an event that updates "currentCardHover" value 
+	//connect the Map component to store OR pass down prop from App.js which is already connected 
+	//
+
+2. Using the browsers location determine which ward the user is currently in + place a marker there 
+	//get position of user when app mounts + save in store
+	//pull in position to Map component and render a <Marker> component with the position 
+	//output a sentence with current ward info
+		- to find current ward will need to somehow filter through all the different polygon components and determine if marker position is inside 
+
+3. Add a modal to compare data for two wards
+	//add a form to the ward.js component with a drop down menu of all the wards
+	//create a Modal component that pops up when form is submitted that renders vitals components for each ward selected

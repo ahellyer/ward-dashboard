@@ -14,19 +14,21 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  padding-bottom: 2em;
+  padding-bottom: 1em;
 }
 h1 {
-  background: url('skyline.jpg') no-repeat;
+  /* background: url('skyline.jpg') no-repeat;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
+  color: grey;
   background-size: cover;
   font-family: 'Alegreya Sans SC', cursive;
   text-transform: uppercase;
-  font-size: 5.5em;
+  font-size: 4em;
   text-shadow: 5px 6px rgba(0, 0, 0, 0.1);
   background-position-y: -337px;
   margin-bottom: 0;
+  margin-top: 0.2em;
 }
 h2 {
   font-size: 1em;
@@ -50,6 +52,7 @@ body {
 }
 .ward {
   color: limegreen;
+  color: #284a69;
 }
 
 .leaflet-container {
@@ -58,6 +61,13 @@ body {
   margin: 2em auto;
   border-radius: 8px;
   border: 2px solid grey;
+}
+
+.ward-desc {
+  font-size: 0.8em;
+  width: 70%;
+  line-height: 1.2;
+  margin: 0 auto;
 }
 
 .App-link {
