@@ -8,7 +8,6 @@ const PhotoContainer = styled.div`
   overflow: hidden;
   border-radius: 50%;
   margin: 1em auto;
-  /* box-shadow: 0px 0px 35px 0px rgba(0,0,0,0.3); */
 `;
 
 const Photo = styled.img`
@@ -28,7 +27,6 @@ const SocialContainer = styled.div`
 
 const Councillor = ({ extended, name, ...props }) => {
   const twitterName = /[^/]*$/.exec(props.councillor.twitter)[0];
-  console.log(twitterName);
   return (
     <div>
       <PhotoContainer photo={props.councillor.photo}>

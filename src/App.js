@@ -25,18 +25,18 @@ class App extends Component {
     //make API call using redux action instead of directly fetching in componentDidMount.
     this.props.fetchWards();
     //get map position:
-    navigator.geolocation.getCurrentPosition(pos => console.log(pos));
+    // navigator.geolocation.getCurrentPosition(pos => console.log(pos));
   }
 
   render() {
     return (
       <HashRouter>
         <div className="App">
-          {/* <header className="App-header">
+          <header className="App-header">
             <h1>
-              Dashb<span className="ward">ward</span>
+              dashb<span className="ward">ward</span>
             </h1>
-            <p>
+            <p className="ward-desc">
               The city of Toronto is governed by the mayor, John Tory, and 25
               city councillors. Each councillor is a member of one committee and
               there are three types of committees that report to City Council.
@@ -44,10 +44,8 @@ class App extends Component {
               review and debate policies and recommendations before they are
               debated at council meetings.
             </p>
-          </header> */}
+          </header>
           <Map />
-
-          {/* <Link to="/#/Ward">Ind ward page</Link> */}
           <Route
             exact
             path="/"

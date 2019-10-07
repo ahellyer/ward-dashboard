@@ -20,22 +20,18 @@ const Card = styled.div`
   padding: 1em;
   transition: all linear 0.1s;
   &:hover {
-    border: 4px solid rgba(72, 77, 109, 1);
+    /* border: 4px solid rgba(72, 77, 109, 1); */
+    background: #bbcde5;
   }
 `;
 
 const WardSummary = props => {
-  //   const twitterProfile = /[^/]*$/.exec(props.wardData.counsillor.twitter)[0];
-  console.log(props.wardData.counsillor);
+  const toggleHover = () => {
+    console.log('toggle hover');
+  };
   return (
-    <Card>
+    <Card onMouseEnter={toggleHover}>
       <Councillor councillor={props.wardData.counsillor} />
-      {/* <TwitterTimelineEmbed
-        className="twitterEmbed"
-        sourceType="profile"
-        screenName={twitterProfile}
-        options={{ height: 200 }}
-      /> */}
       <Link to={`/Wards/${props.wardID}`}>
         <h2>{props.wardData.name}</h2>
       </Link>

@@ -15,7 +15,6 @@ const MainGrid = styled.main`
 `;
 
 const WardGrid = props => {
-  //   console.log(props.wards);
   return props.isLoading ? (
     <Loader />
   ) : (

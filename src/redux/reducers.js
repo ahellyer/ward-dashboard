@@ -2,7 +2,8 @@ import CONSTANTS from './constants';
 
 const initialState = {
   wards: [],
-  dashboardLoading: false
+  dashboardLoading: false,
+  error: ''
 };
 
 const wards = (store = initialState, action) => {
