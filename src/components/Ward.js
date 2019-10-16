@@ -71,57 +71,96 @@ class Ward extends Component {
     this.setState({ redirect: true });
   };
 
+  handleSubmit = e => {
+    e.preventDefault();
+    const compareData = this.props.wards.find(ward => {
+      return ward.name === this.state.currentSelection;
+    });
+    this.setState({
+      compareData
+    });
+  };
+
+  // could use react select package to get key
+  handleSelection = e => {
+    console.log(e.target.value);
+    const currentSelection = e.target.value;
+    this.setState({
+      currentSelection
+    });
+  };
+
+  createVitalsObject = vitals => {
+    const incomeVitals = {
+      symbol: '💰',
+      data: [
+        {
+          label: 'Average Household Income',
+          value: vitals.averageHouseholdIncome,
+          isCurrency: true
+        },
+        {
+          label: 'Median Household Income',
+          value: vitals.medianHouseholdIncome,
+          isCurrency: true
+        }
+      ]
+    };
+
+    // could add type value instead of boolean and check w switch statement
+    const populationVitals = {
+      symbol: '👨‍👨‍👧‍👦',
+      data: [
+        {
+          label: 'Population',
+          value: vitals.population,
+          isCurrency: false
+        },
+        {
+          label: 'People / Household',
+          value: vitals.peoplePerHousehold,
+          isCurrency: false
+        }
+      ]
+    };
+
+    const housingVitals = {
+      symbol: '🏠',
+      data: [
+        {
+          label: 'Renters',
+          value: vitals.percentRenters,
+          isCurrency: false,
+          isPercentage: true
+        },
+        {
+          label: 'Owners',
+          value: vitals.percentOwners,
+          isCurrency: false,
+          isPercentage: true
+        }
+      ]
+    };
+
+    return [incomeVitals, populationVitals, housingVitals];
+  };
+
   render() {
-    console.log(this.props.wards);
+    // console.log(this.props.wards);
     const councillor = this.props.wards[Number(this.props.match.params.id) - 1]
       .counsillor;
 
-    const vitals = this.props.wards[Number(this.props.match.params.id) - 1]
-      .overview;
+    const vitals = this.createVitalsObject(
+      this.props.wards[Number(this.props.match.params.id) - 1].overview
+    );
 
-    const incomeVitals = [
-      {
-        label: 'Average Household Income',
-        value: vitals.averageHouseholdIncome,
-        isCurrency: true
-      },
-      {
-        label: 'Median Household Income',
-        value: vitals.medianHouseholdIncome,
-        isCurrency: true
-      }
-    ];
-
-    const populationVitals = [
-      {
-        label: 'Population',
-        value: vitals.population,
-        isCurrency: false
-      },
-      {
-        label: 'People / Household',
-        value: vitals.peoplePerHousehold,
-        isCurrency: false
-      }
-    ];
-
-    const housingVitals = [
-      {
-        label: 'Renters',
-        value: vitals.percentRenters,
-        isCurrency: false,
-        isPercentage: true
-      },
-      {
-        label: 'Owners',
-        value: vitals.percentOwners,
-        isCurrency: false,
-        isPercentage: true
-      }
-    ];
+    const compareVitals =
+      this.state.compareData &&
+      this.createVitalsObject(this.state.compareData.overview);
 
     const twitterName = /[^/]*$/.exec(councillor.twitter)[0];
 
+    // console.log(this.props.wards);
     return (
       <div>
         <TwoColumn>
@@ -135,10 +174,30 @@ class Ward extends Component {
               {this.props.wards[Number(this.props.match.params.id) - 1].name}
             </h2>
             <div className="vitalsContainer">
-              <SingleVitalsSet symbol="💰" vitals={incomeVitals} />
-              <SingleVitalsSet symbol="👨‍👨‍👧‍👦" vitals={populationVitals} />
-              <SingleVitalsSet symbol="🏠" vitals={housingVitals} />
+              {vitals.map(vital => {
+                return (
+                  <SingleVitalsSet symbol={vital.symbol} vitals={vital.data} />
+                );
+              })}
             </div>
+
+            <form onSubmit={this.handleSubmit}>
+              <select onChange={this.handleSelection}>
+                <option>Choose a ward</option>
+                {this.props.wards.map((ward, i) => {
+                  return <option key={i}>{ward.name}</option>;
+                })}
+              </select>
+              <button>GO!</button>
+            </form>
+
+            {this.state.compareData &&
+              compareVitals.map(vital => {
+                return (
+                  <SingleVitalsSet symbol={vital.symbol} vitals={vital.data} />
+                );
+              })}
+
             <Pagination>
               {Number(this.props.match.params.id) - 1 !== 0 && (
                 <Link

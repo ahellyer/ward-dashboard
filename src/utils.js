@@ -7,12 +7,9 @@ export function formatCoordinates(polygon) {
   const newCoords = polygon.map(coordinates => {
     let a = coordinates[0];
     let b = coordinates[1];
-    // coordinates[0] = b;
-    // coordinates[1] = a;
-    // console.log(coordinates);
+
     return [b, a];
   });
-  // console.log(`new coords are ${newCoords}`);
   return newCoords;
 }
 
@@ -38,5 +35,6 @@ function isMarkerInsidePolygon(marker, poly) {
 
 const mapOptions = {
   waterColour: `https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png`,
-  basicGrey: `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`
+  basicGrey: `https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}`,
+  minimalistMap: `https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png`
 };
